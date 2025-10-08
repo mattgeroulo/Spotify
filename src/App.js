@@ -1,8 +1,10 @@
-import logo from './logo.svg';
+
 import './App.css';
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import {getProfile} from './utils/Spotify'
 import Header from "./Header"
+import ArtistInfo from "./ArtistInfo"
+import TracksList from "./TracksList"
 
 const getToken = async () => {
       try{
@@ -13,12 +15,16 @@ const getToken = async () => {
         console.error("Error:",errors)
       }}
 
-
-
 function App() {
+    const [searchResults, setSearchResults] = useState(null);
+
     useEffect(() => {
       getToken();
     }, []);
+
+    const handleSearchResults = (results) => {
+        setSearchResults(results);
+    };
 
     const handleClick = async () => {
     const profile = await getProfile();
@@ -26,10 +32,19 @@ function App() {
   };
 
   return (
-    <div>
-      <Header />
+    <div className="App">
+      <Header onSearchResults={handleSearchResults} />
       
-      <button onClick={handleClick}>Get Spotify Profile</button>
+      <div className="main-content">
+        {searchResults && (
+          <>
+            <ArtistInfo artist={searchResults.artist} />
+            <TracksList tracks={searchResults.tracks} />
+          </>
+        )}
+        
+        <button onClick={handleClick}>Get Spotify Profile</button>
+      </div>
     </div>
   );
 };

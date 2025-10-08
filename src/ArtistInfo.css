@@ -1,0 +1,47 @@
+.artist-info {
+    margin: 20px 0;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.artist-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.artist-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.artist-details {
+    flex: 1;
+}
+
+.artist-name {
+    margin: 0 0 10px 0;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+}
+
+.artist-followers {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: #666;
+}
+
+.artist-genres {
+    margin: 0;
+    font-size: 14px;
+    color: #888;
+    font-style: italic;
+}
