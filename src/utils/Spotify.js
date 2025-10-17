@@ -25,7 +25,9 @@ export const getProfile = async () => {
       console.error("Failed to fetch track:", response.status, response.statusText);
     }
   } catch (error) {
-    console.error("Error fetching track:", error);
+    /*console.error("Error fetching track:", error);*/
+    console.error("sigma",error)
+
   }
 };
 
