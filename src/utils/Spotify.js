@@ -14,6 +14,7 @@ export const getProfile = async () => {
         "Content-Type": "application/json",
       },
     });
+    console.log("hello")
 
     // 3️⃣ Handle the response
     if (response.ok) {
