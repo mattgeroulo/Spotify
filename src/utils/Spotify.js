@@ -87,6 +87,7 @@ export const getArtistSuggestions = async (query) => {
     const tokenResponse = await fetch("http://localhost:3001/spotify-token");
     const tokenData = await tokenResponse.json();
     const accessToken = tokenData.access_token;
+    console.log(query);
 
     // 2️⃣ Search for artists with the query
     const searchEndpoint = `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=artist&limit=5`;
