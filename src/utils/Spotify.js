@@ -88,6 +88,10 @@ export const getArtistSuggestions = async (query) => {
     const tokenData = await tokenResponse.json();
     const accessToken = tokenData.access_token;
     console.log(query);
+<<<<<<< Updated upstream
+=======
+    console.log("playing with git")
+>>>>>>> Stashed changes
 
     // 2️⃣ Search for artists with the query
     const searchEndpoint = `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=artist&limit=5`;
@@ -103,6 +107,7 @@ export const getArtistSuggestions = async (query) => {
     }
 
     const searchData = await searchResponse.json();
+    
     return searchData.artists.items;
 
   } catch (error) {
