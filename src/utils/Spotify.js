@@ -14,6 +14,7 @@ export const getProfile = async () => {
         "Content-Type": "application/json",
       },
     });
+    console.log("hello")
 
     // 3️⃣ Handle the response
     if (response.ok) {
@@ -24,7 +25,9 @@ export const getProfile = async () => {
       console.error("Failed to fetch track:", response.status, response.statusText);
     }
   } catch (error) {
-    console.error("Error fetching track:", error);
+    /*console.error("Error fetching track:", error);*/
+    console.error("sigma",error)
+
   }
 };
 
