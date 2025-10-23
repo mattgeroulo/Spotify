@@ -1,0 +1,46 @@
+
+/* Modal overlay */
+.myModalOverlay {
+position: fixed;       /* required to cover the screen */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+
+.myModalOverlay--after-open {
+  opacity: 1;
+}
+
+.myModalOverlay--before-close {
+  opacity: 0;
+}
+
+/* Modal content */
+.myModalContent {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  right: 20%;
+  bottom: 20%;
+  background: rgb(27, 100, 160);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  outline: none;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+}
+
+.myModalContent--after-open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.myModalContent--before-close {
+  opacity: 0;
+  transform: translateY(-20px);
+}

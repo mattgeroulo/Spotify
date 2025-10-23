@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./SearchBar.css";
+import "./Popup.css";
 import { searchArtist, getArtistSuggestions } from "./utils/Spotify";
+import ReactModal from 'react-modal'
 
 export default function SearchBar({ onSearchResults }) {
     const [query, setQuery] = useState("");
@@ -11,6 +13,7 @@ export default function SearchBar({ onSearchResults }) {
     const inputRef = useRef(null);
     const suggestionsRef = useRef(null);
     const [isContent,setIsContent]=useState(false)
+    const [modalIsOpen,setModalIsOpen]=useState(false)
     // Debounce function for suggestions
     useEffect(() => {
         const timeoutId = setTimeout(async () => {
@@ -118,9 +121,17 @@ export default function SearchBar({ onSearchResults }) {
                     {isLoading ? "Searching..." : "Search"}
                 </button>
                 <button disabled={isContent}>Clear</button>
+                <p>songName</p>
             </form>
-            
-            
+            <div>
+                <button onClick={()=>setModalIsOpen(true)}>Click here to open modal</button>
+                <ReactModal closeTimeoutMS={200} onRequestClose= {()=>setModalIsOpen(false)} isOpen={modalIsOpen} shouldCloseOnOverlayClick={true}
+                 className={{base:'myModalContent',afterOpen:'myModalContent--after-open',beforeClose:'myModalContent--before-close'}} 
+                 overlayClassName={{base: 'myModalOverlay',afterOpen: 'myModalOverlay--after-open',beforeClose: 'myModalOverlay--before-close'}}>
+                    <p>Content to test with</p>
+                    <button onClick={()=>setModalIsOpen(false)} >Close</button>
+                </ReactModal>
+            </div>
             {showSuggestions && suggestions.length > 0 && (
                 <div className="suggestions-dropdown">
                     {suggestions.map((suggestion, index) => (
