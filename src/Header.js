@@ -1,6 +1,7 @@
 import React from "react";
 import "./Header.css";
 import SearchBar from "./SearchBar";
+import Login from "./Login"
 
 export default function Header({ onSearchResults }) {
     return (
@@ -12,7 +13,10 @@ export default function Header({ onSearchResults }) {
                 </div>
                 <div className="search-section">
                     <SearchBar onSearchResults={onSearchResults} />
+                   
                 </div>
+                <Login />
+                
             </div>
         </header>
     );

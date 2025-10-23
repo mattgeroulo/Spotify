@@ -10,7 +10,7 @@ export default function SearchBar({ onSearchResults }) {
     const [selectedIndex, setSelectedIndex] = useState(-1);
     const inputRef = useRef(null);
     const suggestionsRef = useRef(null);
-
+    const [isContent,setIsContent]=useState(false)
     // Debounce function for suggestions
     useEffect(() => {
         const timeoutId = setTimeout(async () => {
@@ -117,7 +117,9 @@ export default function SearchBar({ onSearchResults }) {
                 <button type="submit" className="searchButton" disabled={isLoading}>
                     {isLoading ? "Searching..." : "Search"}
                 </button>
+                <button disabled={isContent}>Clear</button>
             </form>
+            
             
             {showSuggestions && suggestions.length > 0 && (
                 <div className="suggestions-dropdown">

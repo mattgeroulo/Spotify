@@ -1,11 +1,13 @@
 // Spotify.js
+
+
 export const getProfile = async () => {
   try {
     // 1️⃣ Fetch a valid access token from your backend server
     const tokenResponse = await fetch("http://localhost:3001/spotify-token");
-    const tokenData = await tokenResponse.json();
+    const tokenData= await tokenResponse.json();
     const accessToken = tokenData.access_token;
-
+    
     // 2️⃣ Use that token to call Spotify's API
     const endPoint = "https://api.spotify.com/v1/tracks/2TpxZ7JUBn3uw46aR7qd6V";
     const response = await fetch(endPoint, {
@@ -14,7 +16,7 @@ export const getProfile = async () => {
         "Content-Type": "application/json",
       },
     });
-    console.log("hello")
+    
 
     // 3️⃣ Handle the response
     if (response.ok) {
@@ -35,7 +37,7 @@ export const searchArtist = async (artistName) => {
   try {
     // 1️⃣ Fetch a valid access token from your backend server
     const tokenResponse = await fetch("http://localhost:3001/spotify-token");
-    const tokenData = await tokenResponse.json();
+    const tokenData= await tokenResponse.json();
     const accessToken = tokenData.access_token;
 
     // 2️⃣ Search for the artist
@@ -91,10 +93,7 @@ export const getArtistSuggestions = async (query) => {
     const tokenData = await tokenResponse.json();
     const accessToken = tokenData.access_token;
     console.log(query);
-<<<<<<< Updated upstream
-=======
-    console.log("playing with git")
->>>>>>> Stashed changes
+
 
     // 2️⃣ Search for artists with the query
     const searchEndpoint = `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=artist&limit=5`;
