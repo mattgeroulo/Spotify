@@ -22,10 +22,10 @@ app.get('/callback', async (req, res) => {
   if (!code) {
     return res.redirect('http://localhost:3000/?error=access_denied');
   }
-  
+  console.log(code)
   const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
-  console.log(clientId)
+ // console.log(clientId)
   try {
     const tokenResponse = await fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
@@ -33,7 +33,7 @@ app.get('/callback', async (req, res) => {
         'Authorization': 'Basic ' + (new Buffer.from(clientId + ':' + clientSecret).toString('base64')),
         'content-type': 'application/x-www-form-urlencoded',
       },
-      body: new URLSearchParams({
+      body: new URLSearchParams({         //exchanging access code for a authorization code
         grant_type: 'authorization_code',
         code: code,
         redirect_uri: redirect_uri,

@@ -19,7 +19,7 @@ function App() {
     const profile = await getProfile();
     console.log('User Profile:', profile);
   };
-
+  console.log(searchResults)
   return (
     <div className="App">
       <Header onSearchResults={handleSearchResults} />
@@ -27,8 +27,9 @@ function App() {
       <div className="main-content">
         {searchResults && (
           <>
-            <ArtistInfo artist={searchResults.artist} />
-            <TracksList tracks={searchResults.tracks} />
+            
+            <ArtistInfo artist={searchResults.artist} albums={["temporary array in app.js"]}/>
+            <TracksList tracks={searchResults.tracks} artist={searchResults.artist}/>
           </>
         )}
         

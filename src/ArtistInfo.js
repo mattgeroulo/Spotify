@@ -1,11 +1,13 @@
-import React from "react";
+import React,{useState} from "react";
 import "./ArtistInfo.css";
 
-export default function ArtistInfo({ artist }) {
+export default function ArtistInfo({ artist,albums }) {
+    const[selectedAlbum,setSelectedAlbum]=useState('')
+    const[selectOpen,setSelectOpen]=useState(false)
     if (!artist) {
         return null;
     }
-
+    
     return (
         <div className="artist-info">
             <div className="artist-header">
@@ -25,6 +27,22 @@ export default function ArtistInfo({ artist }) {
                         {artist.genres.slice(0, 3).join(", ")}
                     </p>
                 </div>
+                {albums&&
+                <div>
+                    <p>Album Selection:
+                        <select value={selectedAlbum}onChange ={e=>setSelectedAlbum(e.target.value)} onClick={()=>setSelectOpen(!selectOpen)}>
+                            {albums.map((album,index)=>(
+                            <option value={album}>{album}</option>
+                                
+                            ))}
+                            {/* set album above with api call^^^^^^^*/}
+                            <option value="test">test</option>
+                            <option value="test">test</option>
+                            
+                        </select>
+                        {selectOpen&&<div>testing conditional rendering</div>}
+                    </p>
+                </div>}
             </div>
         </div>
     );
