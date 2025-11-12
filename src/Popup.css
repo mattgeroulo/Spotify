@@ -20,24 +20,37 @@ position: fixed;       /* required to cover the screen */
 
 .popup-header{
   color:white;
-  background: linear-gradient(45,red,blue,green);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   font-size:30px;
-  height: 10%;
-  width: 100%;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  
   justify-content: space-between;
   align-items:center;
-  background:rgb(0, 0, 0);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+  background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient( 125deg, #2E3192 , #1BFFFF);
+  font-family: "Poppins", sans-serif;
   
   display: flex;
   cursor:grab;
 }
-
+.popup-header-tagline{
+  font-size:20px;
+  font-style:italic;
+  
+}
 .button{
   align-self: stretch;
-  background:rgb(219, 215, 215);
+  background:rgb(8, 4, 255);
   width:auto;
   flex:0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  color:white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-size:30px;
+  font-weight: 800;
+
 }
 .button:hover{
   background:grey;
@@ -55,7 +68,7 @@ position: fixed;       /* required to cover the screen */
   left: 40%;
   right: 30%;
   bottom: 20%;
-  background: rgb(255, 255, 255);
+  background:white;
   border: 1px solid #ccc;
   border-radius: 4px;
  

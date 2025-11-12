@@ -6,13 +6,13 @@ import cors from "cors";
 import querystring from 'querystring';
 
 var redirect_uri="http://127.0.0.1:3001/callback"
-
+var access_token_profile=""
 const app = express();
 app.use(cors({
   origin: ["http://127.0.0.1:3000","http://localhost:3000"]// React server
 }));
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.get('/callback', async (req, res) => {
   
@@ -44,7 +44,9 @@ app.get('/callback', async (req, res) => {
     console.log(tokenData)
     
     if (tokenData.access_token) {
-      res.redirect(`http://localhost:3000/?access_token=${tokenData.access_token}`);
+      //res.redirect(`http://localhost:3000/?access_token=${tokenData.access_token}`);
+      access_token_profile=tokenData;
+      res.redirect('http://localhost:3000/profile')
     } else {
       res.redirect('http://localhost:3000/?error=token_failed');
     }
@@ -54,7 +56,31 @@ app.get('/callback', async (req, res) => {
   }
 });
 
+app.get('/profile', async(req,res)=>{
+  try{
+    const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+    const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
+    const data = await fetch("https://api.spotify.com/v1/me/playlists",{
+      method:"Get",
+      headers:{
+        "Authorization":`Bearer ${access_token_profile.access_token}`,
+          
+        }
+      }
+    );
+    if (data.ok){
+      const json_data = await data.json()
+      console.log("Playlists: ", json_data)
+      return data
+    }}
+    catch(error){
 
+    console.error("Error fetching playlists:" , error)
+
+    }
+  }
+)
+  
 
 
 app.get('/spotify-token', async (req, res) => {
@@ -81,4 +107,5 @@ app.get('/spotify-token', async (req, res) => {
   }
 });
 
-app.listen(PORT,'127.0.0.1', () => console.log(`✅ Server running at ${PORT}`));
+// Listen on all interfaces so the container can receive external connections
+app.listen(PORT, '0.0.0.0', () => console.log(`✅ Server running on ${PORT}`));

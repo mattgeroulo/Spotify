@@ -1,19 +1,38 @@
 .login-button{
+    display: grid;
     cursor:pointer;
     background: linear-gradient(135deg, #ff6b6b, #ee5a24);
     color:white;
     border:none;
     font-weight: bold;
-    font-size:14px;
+    font-size:18px;
     border-radius:25px;
     font-family: "Poppins", sans-serif;
     min-width: 100px;
     min-height: 30px;
     transition: all 500ms ease;
-    
+    text-align: center;
+    align-items: center;
+    text-decoration: none;
+   
     
 }
 .login-button:hover{
     box-shadow:5px 1px 10px black;
     transform: translate(0px,-5px);
+}
+.toggle-button{
+     display: grid;
+    cursor:pointer;
+    
+     background: #667eea;
+    border:none;
+    font-weight: bold;
+    font-size:18px;
+    margin-left: 0px;
+    font-family: "Poppins", sans-serif;
+    min-width: 60px;
+    min-height: 100%;
+    gap:0px;
+    padding-left: 0px;
 }

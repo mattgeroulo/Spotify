@@ -2,6 +2,12 @@ import React, {useState} from 'react'
 import "./Popup.css"
 import ReactModal from 'react-modal'
 import "./ArtistInfo.css"
+function convert(value){
+    const min = String(((value/1000)/60)).split(".")[0]
+    const seconds = String(((value/1000)%60)).split(".")[0]
+    return min+":"+seconds;
+}
+
 export default function Popup({selectedTrack=null,modalIsOpen,onClose,artist=null}){
        
     return(
@@ -12,14 +18,15 @@ export default function Popup({selectedTrack=null,modalIsOpen,onClose,artist=nul
                                             
                                             {selectedTrack&& selectedTrack.album && selectedTrack.album.images?(<div>
                                                 <div className="popup-header">
-                                                    {/* {selectedTrack.name +" by "+artist.name }*/}
-                                                    
-                                                    {selectedTrack?(selectedTrack.name +" by "+artist.name ):""}
-                                                    
-                                                    <button className = "button" onClick={onClose}>Close</button>
+                                                   <div>
+                                                    {selectedTrack?(selectedTrack.name):""}
+                                                    <p className= "popup-header-tagline">Album: {selectedTrack?selectedTrack.album.name:"none"}</p>
+                                                   </div>
+                                                    <button className = "button" onClick={onClose}>X</button>
                                                 </div>
+                                                
                                                 <img src={selectedTrack.album.images?.[0]?.url||''} alt={artist?artist.name:"error"} className="artist-image-popup"/>
-                                                <p>{selectedTrack?selectedTrack.album.name:"none"}</p>
+                                                <p>Runtime: {convert(selectedTrack.duration_ms)}</p>
                                             </div>
                                             ):<div>FallBack</div>}
                                         

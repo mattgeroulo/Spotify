@@ -22,7 +22,7 @@ function App() {
   console.log(searchResults)
   return (
     <div className="App">
-      <Header onSearchResults={handleSearchResults} />
+      <Header onSearchResults={handleSearchResults} searchElements={true}/>
       
       <div className="main-content">
         {searchResults && (

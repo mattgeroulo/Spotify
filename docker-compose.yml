@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    image: jamming-frontend:latest
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    environment:
+      # If your frontend makes API calls to the backend, set the base URL to the backend service
+      - REACT_APP_API_BASE_URL=http://backend:3001
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: jamming-backend:latest
+    ports:
+      - "3001:3001"
+    env_file:
+    - ./server/.env
+    
+    restart: unless-stopped
+
+
