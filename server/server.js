@@ -5,11 +5,15 @@ dotenv.config();
 import cors from "cors";
 import querystring from 'querystring';
 
+const FRONTEND_URL = process.env.REACT_APP_FRONTEND_URL || 'http://localhost:3000';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://127.0.0.1:3001';
+
+
 var redirect_uri="http://127.0.0.1:3001/callback"
 var access_token_profile=""
 const app = express();
 app.use(cors({
-  origin: ["http://127.0.0.1:3000","http://localhost:3000"]// React server
+  origin: ["http://127.0.0.1:3000",FRONTEND_URL]// React server
 }));
 
 const PORT = process.env.PORT || 3001;
@@ -20,7 +24,7 @@ app.get('/callback', async (req, res) => {
   const state = req.query.state;
   
   if (!code) {
-    return res.redirect('http://localhost:3000/?error=access_denied');
+    return res.redirect(FRONTEND_URL+'/?error=access_denied');
   }
   console.log(code)
   const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
@@ -46,13 +50,13 @@ app.get('/callback', async (req, res) => {
     if (tokenData.access_token) {
       //res.redirect(`http://localhost:3000/?access_token=${tokenData.access_token}`);
       access_token_profile=tokenData;
-      res.redirect('http://localhost:3000/profile')
+      res.redirect(FRONTEND_URL+'/profile')
     } else {
-      res.redirect('http://localhost:3000/?error=token_failed');
+      res.redirect(FRONTEND_URL+'/?error=token_failed');
     }
   } catch (error) {
     console.error('Token exchange error:', error);
-    res.redirect('http://localhost:3000/?error=server_error');
+    res.redirect(FRONTEND_URL+'/?error=server_error');
   }
 });
 
