@@ -1,10 +1,12 @@
 // Spotify.js
 
+const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:3001";
 
 export const getProfile = async () => {
   try {
     // 1️⃣ Fetch a valid access token from your backend server
-    const tokenResponse = await fetch("http://localhost:3001/spotify-token");
+    const tokenResponse = await fetch(`${API_URL}/api/spotify-token`)
+
     const tokenData= await tokenResponse.json();
     const accessToken = tokenData.access_token;
     
@@ -36,7 +38,7 @@ export const getProfile = async () => {
 export const searchArtist = async (artistName) => {
   try {
     // 1️⃣ Fetch a valid access token from your backend server
-    const tokenResponse = await fetch("http://localhost:3001/spotify-token");
+    const tokenResponse = await fetch(`${API_URL}/api/spotify-token`);
     const tokenData= await tokenResponse.json();
     const accessToken = tokenData.access_token;
 
@@ -89,7 +91,7 @@ export const searchArtist = async (artistName) => {
 export const getArtistSuggestions = async (query) => {
   try {
     // 1️⃣ Fetch a valid access token from your backend server
-    const tokenResponse = await fetch("http://localhost:3001/spotify-token");
+    const tokenResponse = await fetch(`${API_URL}/api/spotify-token`);
     const tokenData = await tokenResponse.json();
     const accessToken = tokenData.access_token;
     console.log(query);

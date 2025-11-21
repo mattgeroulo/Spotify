@@ -5,11 +5,9 @@ dotenv.config();
 import cors from "cors";
 import querystring from 'querystring';
 
-const FRONTEND_URL = process.env.REACT_APP_FRONTEND_URL || 'http://localhost:3000';
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://127.0.0.1:3001';
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
+const BACKEND_URL = process.env.BACKEND_URL || 'http://127.0.0.1:3001';
 
-
-var redirect_uri="http://127.0.0.1:3001/callback"
 var access_token_profile=""
 const app = express();
 app.use(cors({
@@ -18,9 +16,9 @@ app.use(cors({
 
 const PORT = process.env.PORT || 3001;
 
-app.get('/login', (req, res) => {
-    const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-    const redirectUri = process.env.REACT_APP_REDIRECT_URI; // e.g. http://3.144.32.93/callback
+app.get('/api/login', (req, res) => {
+    const clientId = process.env.SPOTIFY_CLIENT_ID;
+    const redirectUri = process.env.REDIRECT_URI; // e.g. http://3.144.32.93/callback
     const scope = 'user-read-private user-read-email';
     const state = '123456';
     console.log(redirectUri)
@@ -36,17 +34,17 @@ app.get('/login', (req, res) => {
 
 
 
-app.get('/callback', async (req, res) => {
+app.get('/api/callback', async (req, res) => {
   
   const code = req.query.code;
   const state = req.query.state;
-  
+  const redirectUri = process.env.REDIRECT_URI;
   if (!code) {
     return res.redirect(FRONTEND_URL+'/?error=access_denied');
   }
   console.log(code)
-  const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-  const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
+  const clientId = process.env.SPOTIFY_CLIENT_ID;
+  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
  // console.log(clientId)
   try {
     const tokenResponse = await fetch('https://accounts.spotify.com/api/token', {
@@ -58,7 +56,7 @@ app.get('/callback', async (req, res) => {
       body: new URLSearchParams({         //exchanging access code for a authorization code
         grant_type: 'authorization_code',
         code: code,
-        redirect_uri: redirect_uri,
+        redirect_uri: redirectUri,
       }),
     });
     
@@ -78,36 +76,37 @@ app.get('/callback', async (req, res) => {
   }
 });
 
-app.get('/profile', async(req,res)=>{
-  try{
-    const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-    const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
-    const data = await fetch("https://api.spotify.com/v1/me/playlists",{
-      method:"Get",
-      headers:{
-        "Authorization":`Bearer ${access_token_profile.access_token}`,
-          
-        }
+app.get('/api/profile', async (req, res) => {
+  try {
+    const data = await fetch("https://api.spotify.com/v1/me/playlists", {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${access_token_profile.access_token}`,
       }
-    );
-    if (data.ok){
-      const json_data = await data.json()
-      console.log("Playlists: ", json_data)
-      return data
-    }}
-    catch(error){
+    });
 
-    console.error("Error fetching playlists:" , error)
-
+    if (!data.ok) {
+      return res.status(500).json({ error: "Spotify API error" });
     }
+
+    const playlists = await data.json();
+    console.log("Playlists:", playlists);
+
+    // ✅ Send JSON back to frontend
+    res.json(playlists);
+
+  } catch (error) {
+    console.error("Error fetching playlists:", error);
+    res.status(500).json({ error: "Server error" });
   }
-)
+});
+
   
 
 
-app.get('/spotify-token', async (req, res) => {
-  const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-  const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
+app.get('/api/spotify-token', async (req, res) => {
+  const clientId = process.env.SPOTIFY_CLIENT_ID;
+  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
   const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
 

@@ -8,18 +8,7 @@ export default function Login(){
 
     function handleClick(){
         
-        /*const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-        
-        
-        console.log("in the login button login.js")
-        
-        console.log(redirectUri)
-        const scope = 'user-read-private user-read-email';
-        const state = '1234567898';
-
-        const authUrl = `https://accounts.spotify.com/authorize?response_type=code&client_id=${clientId}&scope=${encodeURIComponent(scope)}&redirect_uri=${encodeURIComponent(redirectUri)}&state=${state}`;
-
-        window.location.href = authUrl;*/
+       
         window.location.href = `${BACKEND_URL}/login`
     }
 
