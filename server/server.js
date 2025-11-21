@@ -18,6 +18,24 @@ app.use(cors({
 
 const PORT = process.env.PORT || 3001;
 
+app.get('/login', (req, res) => {
+    const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+    const redirectUri = process.env.REACT_APP_REDIRECT_URI; // e.g. http://3.144.32.93/callback
+    const scope = 'user-read-private user-read-email';
+    const state = '123456';
+    console.log(redirectUri)
+    const authUrl =
+        `https://accounts.spotify.com/authorize?response_type=code` +
+        `&client_id=${clientId}` +
+        `&scope=${encodeURIComponent(scope)}` +
+        `&redirect_uri=${encodeURIComponent(redirectUri)}` +
+        `&state=${state}`;
+
+    res.redirect(authUrl);
+});
+
+
+
 app.get('/callback', async (req, res) => {
   
   const code = req.query.code;

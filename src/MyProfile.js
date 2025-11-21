@@ -5,7 +5,7 @@ export default function MyProfile() {
   const [playlists, setPlaylists] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/profile")
+    fetch("http://backend:3001/profile")
       .then(res => res.json())
       .then(data => {
         console.log("Spotify playlists data:", data);
