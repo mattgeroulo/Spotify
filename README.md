@@ -33,7 +33,7 @@ Build and run the backend image:
 docker build -f server/Dockerfile -t jamming-backend:latest ./server
 
 # run backend mapping port 3001
-docker run --rm -p 3001:3001 --env REACT_APP_SPOTIFY_CLIENT_ID="<your-id>" --env REACT_APP_SPOTIFY_CLIENT_SECRET="<your-secret>" jamming-backend:latest
+docker run --rm -p 3001:3001 --env REACT_APP_SPOTIFY_CLIENT_ID="<SpotifyClient-id>" --env REACT_APP_SPOTIFY_CLIENT_SECRET="<SpotifyClient-secret>" jamming-backend:latest
 ```
 
 Notes:
