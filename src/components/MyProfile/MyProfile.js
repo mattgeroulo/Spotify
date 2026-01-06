@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Header from "./Header";
+import Header from "../Header/Header";
 
 export default function MyProfile() {
   const [playlists, setPlaylists] = useState([]);

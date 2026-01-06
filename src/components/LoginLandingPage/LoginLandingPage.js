@@ -1,6 +1,6 @@
 
-import Header from "./Header"
-import Login from "./Login"
+import Header from "../Header/Header"
+import Login from "../Login/Login"
 export default function LoginLandingPage(){
     return(
         <div>

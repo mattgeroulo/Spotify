@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./SearchBar.css";
-import "./Popup.css";
-import { searchArtist, getArtistSuggestions } from "./utils/Spotify";
+import "../Popup/Popup.css";
+import { searchArtist, getArtistSuggestions } from "../../utils/Spotify";
 
-import Popup from "./Popup"
+import Popup from "../Popup/Popup"
 
 export default function SearchBar({ onSearchResults }) {
     const [query, setQuery] = useState("");

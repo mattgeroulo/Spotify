@@ -1,14 +1,14 @@
 import React,{useState} from "react";
 import "./Header.css";
-import SearchBar from "./SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 
-import "./Login.css"
+import "../Login/Login.css"
 
 
 
 import { Routes, Route, Link } from "react-router-dom"
-import App from "./App"
-import "./Login.css"
+import App from "../App/App"
+import "../Login/Login.css"
 export default function Header({ onSearchResults,searchElements=false }) {
     const [isOpen,SetIsOpen]=useState(true)
     return (

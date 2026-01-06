@@ -1,8 +1,8 @@
 import React, {useState}  from "react";
 import "./TracksList.css";
-import Popup from "./Popup"
+import Popup from "../Popup/Popup"
 import ReactModal from 'react-modal'
-import "./Popup.css"
+import "../Popup/Popup.css"
 
 ReactModal.setAppElement('#root')
 

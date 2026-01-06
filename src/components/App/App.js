@@ -1,10 +1,10 @@
 
 import './App.css';
 import {useEffect, useState} from 'react'
-import {getProfile, handleAuthCallback} from './utils/Spotify'
-import Header from "./Header"
-import ArtistInfo from "./ArtistInfo"
-import TracksList from "./TracksList"
+import {getProfile, handleAuthCallback} from '../../utils/Spotify'
+import Header from "../Header/Header"
+import ArtistInfo from "../ArtistInfo/ArtistInfo"
+import TracksList from "../TracksList/TracksList"
 
 function App() {
     const [searchResults, setSearchResults] = useState(null);

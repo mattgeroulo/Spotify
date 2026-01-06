@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import "./Popup.css"
 import ReactModal from 'react-modal'
-import "./ArtistInfo.css"
+import "../ArtistInfo/ArtistInfo.css"
 function convert(value){
     const min = String(((value/1000)/60)).split(".")[0]
     const seconds = String(((value/1000)%60)).split(".")[0]
