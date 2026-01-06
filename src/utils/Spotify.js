@@ -77,6 +77,13 @@ export const searchArtist = async (artistName) => {
 
     const tracksData = await tracksResponse.json();
 
+    // Debug: Log preview availability
+    const previewCount = tracksData.tracks.filter(t => t.preview_url).length;
+    console.log(`Preview URLs available: ${previewCount}/${tracksData.tracks.length} tracks`);
+    tracksData.tracks.forEach((t, i) => {
+      console.log(`${i+1}. ${t.name}: ${t.preview_url ? '✓ Has preview' : '✗ No preview'}`);
+    });
+
     return {
       artist: artist,
       tracks: tracksData.tracks

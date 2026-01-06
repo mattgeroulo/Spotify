@@ -1,14 +1,12 @@
 import React,{useState} from "react";
 import "./Header.css";
 import SearchBar from "../SearchBar/SearchBar";
+import NowPlaying from "../NowPlaying/NowPlaying";
 
 import "../Login/Login.css"
 
+import { Link } from "react-router-dom"
 
-
-import { Routes, Route, Link } from "react-router-dom"
-import App from "../App/App"
-import "../Login/Login.css"
 export default function Header({ onSearchResults,searchElements=false }) {
     const [isOpen,SetIsOpen]=useState(true)
     return (
@@ -25,9 +23,9 @@ export default function Header({ onSearchResults,searchElements=false }) {
                             </g>
                             </svg>
                 </button>
-                
+
                 {isOpen&&
-                <nav className="header-content">
+                <nav className="header-nav">
                     <Link to="/" className ="login-button">Home</Link>
                     <Link to="/login" className ="login-button">Login</Link>
                     <Link to ="/profile" className="login-button">Profile</Link>
@@ -39,13 +37,11 @@ export default function Header({ onSearchResults,searchElements=false }) {
                 {searchElements&&
                 <div className="search-section">
                     <SearchBar onSearchResults={onSearchResults} />
-                   
                 </div>}
-                
-                
-            
-                
-                
+
+                <div className="header-right">
+                    <NowPlaying />
+                </div>
             </div>
         </header>
     );

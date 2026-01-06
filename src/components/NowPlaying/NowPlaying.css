@@ -1,0 +1,97 @@
+.now-playing {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: #282828;
+    border-radius: 8px;
+    max-width: 250px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.now-playing:hover {
+    background: #333;
+}
+
+.paused-icon {
+    color: #1db954;
+    display: flex;
+    align-items: center;
+}
+
+.now-playing-cover {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.now-playing-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+}
+
+.now-playing-title {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.now-playing-artist {
+    color: #b3b3b3;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Animated Audio Bars */
+.audio-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 20px;
+    padding-left: 8px;
+}
+
+.bar {
+    width: 4px;
+    background: #1db954;
+    border-radius: 2px;
+    animation: sound 0.5s infinite ease-in-out;
+}
+
+.bar:nth-child(1) {
+    height: 8px;
+    animation-delay: 0s;
+}
+
+.bar:nth-child(2) {
+    height: 16px;
+    animation-delay: 0.1s;
+}
+
+.bar:nth-child(3) {
+    height: 12px;
+    animation-delay: 0.2s;
+}
+
+.bar:nth-child(4) {
+    height: 18px;
+    animation-delay: 0.3s;
+}
+
+@keyframes sound {
+    0%, 100% {
+        transform: scaleY(0.5);
+    }
+    50% {
+        transform: scaleY(1);
+    }
+}

@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3001;
 app.get('/api/login', (req, res) => {
     const clientId = process.env.SPOTIFY_CLIENT_ID;
     const redirectUri = process.env.REDIRECT_URI; // e.g. http://3.144.32.93/callback
-    const scope = 'user-read-private user-read-email';
+    const scope = 'user-read-private user-read-email streaming user-read-playback-state user-modify-playback-state';
     const state = '123456';
     console.log(redirectUri)
     const authUrl =
@@ -35,7 +35,6 @@ app.get('/api/login', (req, res) => {
 
 
 app.get('/api/callback', async (req, res) => {
-  
   const code = req.query.code;
   const state = req.query.state;
   const redirectUri = process.env.REDIRECT_URI;
@@ -45,7 +44,6 @@ app.get('/api/callback', async (req, res) => {
   console.log(code)
   const clientId = process.env.SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
- // console.log(clientId)
   try {
     const tokenResponse = await fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
@@ -53,18 +51,17 @@ app.get('/api/callback', async (req, res) => {
         'Authorization': 'Basic ' + (new Buffer.from(clientId + ':' + clientSecret).toString('base64')),
         'content-type': 'application/x-www-form-urlencoded',
       },
-      body: new URLSearchParams({         //exchanging access code for a authorization code
+      body: new URLSearchParams({
         grant_type: 'authorization_code',
         code: code,
         redirect_uri: redirectUri,
       }),
     });
-    
+
     const tokenData = await tokenResponse.json();
     console.log(tokenData)
-    
+
     if (tokenData.access_token) {
-      //res.redirect(`http://localhost:3000/?access_token=${tokenData.access_token}`);
       access_token_profile=tokenData;
       res.redirect(FRONTEND_URL+'/profile')
     } else {
@@ -105,6 +102,16 @@ app.get('/api/profile', async (req, res) => {
 
 
 app.get('/api/spotify-token', async (req, res) => {
+  // If user is logged in, return their token (enables preview URLs)
+  if (access_token_profile && access_token_profile.access_token) {
+    return res.json({
+      access_token: access_token_profile.access_token,
+      token_type: 'Bearer',
+      is_user_token: true
+    });
+  }
+
+  // Fall back to client credentials
   const clientId = process.env.SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
@@ -121,11 +128,24 @@ app.get('/api/spotify-token', async (req, res) => {
     });
 
     const data = await response.json();
-    res.json(data);
+    res.json({ ...data, is_user_token: false });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to get token' });
   }
+});
+
+// Check if user is logged in
+app.get('/api/auth-status', (req, res) => {
+  res.json({
+    isLoggedIn: !!(access_token_profile && access_token_profile.access_token)
+  });
+});
+
+// Logout endpoint
+app.post('/api/logout', (req, res) => {
+  access_token_profile = "";
+  res.json({ success: true });
 });
 
 // Listen on all interfaces so the container can receive external connections

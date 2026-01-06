@@ -5,12 +5,15 @@ import App from './components/App/App';
 import Root from "./components/Root/Root";
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom"
+import { SpotifyPlayerProvider } from './context/SpotifyPlayerContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Root />
+      <SpotifyPlayerProvider>
+        <Root />
+      </SpotifyPlayerProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

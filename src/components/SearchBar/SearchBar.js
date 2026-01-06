@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./SearchBar.css";
-import "../Popup/Popup.css";
 import { searchArtist, getArtistSuggestions } from "../../utils/Spotify";
-
-import Popup from "../Popup/Popup"
 
 export default function SearchBar({ onSearchResults }) {
     const [query, setQuery] = useState("");
@@ -13,7 +10,6 @@ export default function SearchBar({ onSearchResults }) {
     const [selectedIndex, setSelectedIndex] = useState(-1);
     const inputRef = useRef(null);
     const suggestionsRef = useRef(null);
-    const [isContent,setIsContent]=useState(false)
     
     // Debounce function for suggestions
     useEffect(() => {
@@ -121,12 +117,7 @@ export default function SearchBar({ onSearchResults }) {
                 <button type="submit" className="searchButton" disabled={isLoading}>
                     {isLoading ? "Searching..." : "Search"}
                 </button>
-                <button disabled={isContent}>Clear</button>
-                <p>songName</p>
             </form>
-            <div>
-                <Popup text={"hello world"} />
-            </div>
             {showSuggestions && suggestions.length > 0 && (
                 <div className="suggestions-dropdown">
                     {suggestions.map((suggestion, index) => (

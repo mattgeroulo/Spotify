@@ -9,7 +9,7 @@ export default function Login(){
     function handleClick(){
         
        
-        window.location.href = `${BACKEND_URL}/login`
+        window.location.href = `${BACKEND_URL}/api/login`
     }
 
     return(
