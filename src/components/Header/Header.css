@@ -4,11 +4,12 @@ body {
 }
 
 .header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: #181818;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   position: sticky;
   top: 0;
   z-index: 1000;
+  border-bottom: 1px solid #282828;
 }
 
 .header-content {
@@ -16,11 +17,10 @@ body {
   align-items: center;
   justify-content: flex-start;
   max-width: 1200px;
-  margin: 0 ;
+  margin: 0;
   padding: 20px 40px;
   padding-left: 10px;
   gap: 40px;
- 
 }
 
 .logo-section {
@@ -31,17 +31,16 @@ body {
 }
 
 .mainTitle {
-  color: #ffffff;
+  color: #fff;
   margin: 0;
   font-size: 42px;
   font-weight: 800;
   font-family: "Poppins", sans-serif;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   letter-spacing: -1px;
 }
 
 .tagline {
-  color: rgba(255, 255, 255, 0.8);
+  color: #b3b3b3;
   margin: 0;
   font-size: 14px;
   font-weight: 400;
@@ -63,16 +62,16 @@ body {
     gap: 20px;
     padding: 20px;
   }
-  
+
   .logo-section {
     align-items: center;
     text-align: center;
   }
-  
+
   .mainTitle {
     font-size: 36px;
   }
-  
+
   .search-section {
     width: 100%;
     max-width: none;
@@ -83,11 +82,11 @@ body {
   .header-content {
     padding: 15px;
   }
-  
+
   .mainTitle {
     font-size: 32px;
   }
-  
+
   .tagline {
     font-size: 12px;
   }

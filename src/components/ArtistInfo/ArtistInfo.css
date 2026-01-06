@@ -1,11 +1,9 @@
 .artist-info {
     margin: 20px 0;
     padding: 30px;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(20px);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: #181818;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .artist-header {
@@ -19,12 +17,12 @@
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
+
 .artist-image-popup {
     width: 50%;
     height: 50%;
-    
     object-fit: cover;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -37,18 +35,18 @@
     margin: 0 0 10px 0;
     font-size: 28px;
     font-weight: bold;
-    color: #333;
+    color: #fff;
 }
 
 .artist-followers {
     margin: 0 0 8px 0;
     font-size: 16px;
-    color: #666;
+    color: #b3b3b3;
 }
 
 .artist-genres {
     margin: 0;
     font-size: 14px;
-    color: #888;
+    color: #1db954;
     font-style: italic;
 }

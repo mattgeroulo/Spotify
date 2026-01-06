@@ -1,46 +1,48 @@
 .tracks-list {
     margin: 20px 0;
     padding: 30px;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(20px);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: #181818;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .tracks-title {
     margin: 0 0 20px 0;
     font-size: 24px;
     font-weight: bold;
-    color: #333;
+    color: #fff;
 }
 
 .tracks-container {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 4px;
 }
 
 .track-item {
     display: flex;
     align-items: center;
     padding: 12px;
-    background-color: white;
+    background-color: transparent;
     border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: background-color 0.2s ease;
+    cursor: pointer;
 }
 
 .track-item:hover {
-    background-color: #f0f0f0;
+    background-color: #282828;
 }
 
 .track-number {
     width: 30px;
     text-align: center;
-    font-weight: bold;
-    color: #666;
+    font-weight: 500;
+    color: #b3b3b3;
     margin-right: 15px;
+}
+
+.track-item:hover .track-number {
+    color: #fff;
 }
 
 .track-info {
@@ -49,17 +51,17 @@
 
 .track-name {
     font-weight: 600;
-    color: #333;
+    color: #fff;
     margin-bottom: 4px;
 }
 
 .track-album {
     font-size: 14px;
-    color: #666;
+    color: #b3b3b3;
 }
 
 .track-duration {
     font-size: 14px;
-    color: #888;
+    color: #b3b3b3;
     font-weight: 500;
 }

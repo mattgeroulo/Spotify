@@ -1,38 +1,47 @@
-.login-button{
+.login-button {
     display: grid;
-    cursor:pointer;
-    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-    color:white;
-    border:none;
+    cursor: pointer;
+    background: #1db954;
+    color: #000;
+    border: none;
     font-weight: bold;
-    font-size:18px;
-    border-radius:25px;
+    font-size: 18px;
+    border-radius: 25px;
     font-family: "Poppins", sans-serif;
     min-width: 100px;
     min-height: 30px;
-    transition: all 500ms ease;
+    transition: all 0.2s ease;
     text-align: center;
     align-items: center;
     text-decoration: none;
-   
-    
+    padding: 8px 16px;
 }
-.login-button:hover{
-    box-shadow:5px 1px 10px black;
-    transform: translate(0px,-5px);
+
+.login-button:hover {
+    background: #1ed760;
+    transform: scale(1.02);
 }
-.toggle-button{
-     display: grid;
-    cursor:pointer;
-    
-     background: #667eea;
-    border:none;
+
+.toggle-button {
+    display: grid;
+    cursor: pointer;
+    background: #282828;
+    border: none;
     font-weight: bold;
-    font-size:18px;
+    font-size: 18px;
     margin-left: 0px;
     font-family: "Poppins", sans-serif;
     min-width: 60px;
     min-height: 100%;
-    gap:0px;
+    gap: 0px;
     padding-left: 0px;
+    transition: background 0.2s ease;
+}
+
+.toggle-button:hover {
+    background: #333;
+}
+
+.toggle-button svg {
+    fill: #fff;
 }
